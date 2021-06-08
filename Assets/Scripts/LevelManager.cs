@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     #endregion
     public GameObject hoops;    
     private GameObject hoopL, hoopR;
+    private Hoop hoopLscript, hoopRscript;
 
     
     void Start()
@@ -21,21 +22,34 @@ public class LevelManager : MonoBehaviour
         //GET HOOPS
         hoopL = hoops.transform.GetChild(0).gameObject;
         hoopR = hoops.transform.GetChild(1).gameObject;
+
+        //GET HOOP SCRIPTS
+        hoopLscript = hoopL.GetComponent<Hoop>();
+        hoopRscript = hoopR.GetComponent<Hoop>();
     }
     
 
     public void GetScore()
     {
+        AudioController.PlaySFX(Global.Sfx.Score);
         Global.score++;
+        TimeController.Instance.AddTime();
         Ball.Instance.ResetVelocityX();
 
-        if(Global.gameDir == Global.GameDirection.toLeft)
+        ChangeHoops();
+    }
+
+    public void ChangeHoops()
+    {
+        if (Global.gameDir == Global.GameDirection.toLeft)
         {
             //CHANGE GAME DIRECTION
             Global.gameDir = Global.GameDirection.toRight;
 
             //CHANGE THE VISIBLE HOOP
             hoopL.SetActive(false);
+
+            hoopRscript.ChangePosition();            
             hoopR.SetActive(true);
         }
 
@@ -46,6 +60,8 @@ public class LevelManager : MonoBehaviour
 
             //CHANGE THE VISIBLE HOOP
             hoopR.SetActive(false);
+
+            hoopLscript.ChangePosition();
             hoopL.SetActive(true);
         }
     }

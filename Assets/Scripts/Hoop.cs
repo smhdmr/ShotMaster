@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hoop : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+{    
+    public float upLimit;
+    public float downLimit;
+
+    public void ChangePosition()
     {
-        
+        transform.position = new Vector3(transform.position.x, Random.Range(downLimit, upLimit), transform.position.z);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

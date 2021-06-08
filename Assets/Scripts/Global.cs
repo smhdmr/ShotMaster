@@ -11,5 +11,13 @@ public static class Global
         toLeft,
         toRight
     }
+
+    public enum Sfx
+    {
+        Score,
+        Basketboard,
+        Ground,
+    }
+
     public static GameDirection gameDir = GameDirection.toLeft;
 }
