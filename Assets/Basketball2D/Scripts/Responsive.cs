@@ -5,7 +5,7 @@ using System.Collections;
 /// Responsive Positioning And Scaling For GameObject
 /// </summary>
 public class Responsive : MonoBehaviour
-{
+{		
 		public ScaleType scaleType = ScaleType.ASPECT_RATIO;//scale method
 		public ResponsiveMode responsiveMode = ResponsiveMode.AWAKE;//responsive mode
 		public float xposfrac = 0.5f;//x-position fraction
@@ -17,7 +17,7 @@ public class Responsive : MonoBehaviour
 		public bool doTranslate = true;
 		public bool isEnabled = true;
 		public Camera cam;
-	
+		
 		void Awake ()
 		{
 				if (cam == null) {
@@ -61,7 +61,7 @@ public class Responsive : MonoBehaviour
 				int sheight = Screen.height;
 		
 				Vector3 positionworldvector = cam.ScreenToWorldPoint (new Vector2 (swidth * xposfrac, sheight * yposfrac));//screen pixel position to world position
-				transform.position = new Vector3 (positionworldvector.x, positionworldvector.y, transform.position.z);//set new position
+				transform.position = new Vector3(positionworldvector.x, positionworldvector.y, transform.position.z);//set new position
 		}
 	
 		//Change The Scale Of Current Object Relative To Screen Width and Screen Height
@@ -78,7 +78,7 @@ public class Responsive : MonoBehaviour
 		private void AspectRatioScaling ()
 		{
 				float aspectRatio = cam.aspect;
-				transform.localScale = new Vector3 (aspectRatio * aspectfrac, aspectRatio * aspectfrac, aspectRatio * aspectfrac);//set new scale	
+				transform.localScale = new Vector3(aspectRatio * aspectfrac, aspectRatio * aspectfrac, aspectRatio * aspectfrac);//set new scale	
 		}
 	
 		public enum ScaleType
