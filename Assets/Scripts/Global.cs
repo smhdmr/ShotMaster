@@ -6,6 +6,7 @@ public static class Global
 {
     public static bool isGameStarted = false;
     public static int score = 0;
+    public static int streakCount = 0;
     public enum GameDirection
     {
         toLeft,

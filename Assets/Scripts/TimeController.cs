@@ -7,6 +7,7 @@ public class TimeController : MonoBehaviour
 {
     public static TimeController Instance;
     public float timeToAdd;
+    public float timeToAddStreak;
     public float timeToEnd;
     private float remainingTime;
     public GameObject timeBar;
@@ -33,8 +34,12 @@ public class TimeController : MonoBehaviour
     }
 
     public void AddTime()
-    {
-        remainingTime += timeToAdd;
+    {     
+        if (Global.streakCount > 1)
+            remainingTime += timeToAddStreak;
+
+        else
+            remainingTime += timeToAdd;
 
         if (remainingTime >= timeToEnd)
             remainingTime = timeToEnd;

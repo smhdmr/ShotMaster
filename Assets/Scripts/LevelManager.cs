@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
 
     public void GetScore()
     {
-        AudioController.PlaySFX(Global.Sfx.Score);
+        AudioController.PlaySFX(Global.Sfx.Score);       
         Global.score++;
         TimeController.Instance.AddTime();
         Ball.Instance.ResetVelocityX();
@@ -64,5 +64,10 @@ public class LevelManager : MonoBehaviour
             hoopLscript.ChangePosition();
             hoopL.SetActive(true);
         }
+    }
+
+    public static void ResetStreak()
+    {
+        Global.streakCount = 0;
     }
 }
