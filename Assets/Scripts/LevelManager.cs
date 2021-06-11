@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour
         Instance = this;
     }
     #endregion
+    public int normalScore;
+    public int streakScore;
+
     public Transform ballStartPos;
     private GameObject ball;
     public GameObject hoops;    
@@ -36,8 +39,15 @@ public class LevelManager : MonoBehaviour
 
     public void GetScore()
     {
-        AudioController.PlaySFX(Global.Sfx.Score);       
-        Global.score++;
+        AudioController.PlaySFX(Global.Sfx.Score);
+        if(Global.streakCount > 1)        
+            Global.score += streakScore;
+        
+
+        else        
+            Global.score += normalScore;
+               
+
         TimeController.Instance.AddTime();
         Ball.Instance.ResetVelocityX();
 
@@ -80,10 +90,12 @@ public class LevelManager : MonoBehaviour
     {
         Global.isGameStarted = false;
         UIManager.Instance.ClearPoints();
-        TimeController.Instance.ResetTime();
-        //ball.transform.position = ballStartPos.transform.position;
+        TimeController.Instance.ResetTime();        
         Ball.Instance.transform.position = ballStartPos.transform.position;
         Ball.Instance.ResetVelocityX();
+        Global.gameDir = Global.GameDirection.toLeft;
+        hoopR.SetActive(false);
+        hoopL.SetActive(true);
         Global.isPlayable = true;
     }
 }

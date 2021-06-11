@@ -8,6 +8,7 @@ public class ScoreTrigger : MonoBehaviour
     {
         LevelManager.Instance.GetScore();
         Global.streakCount++;
+        UIManager.Instance.SetPoint(Global.score);
     }
 
 }
