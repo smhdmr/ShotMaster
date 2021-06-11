@@ -30,7 +30,16 @@ public class TimeController : MonoBehaviour
                 remainingTime = timeToEnd;
 
             timeBarFill.fillAmount = remainingTime / timeToEnd;
-        }
+
+            if(remainingTime <= 0f)
+            {
+                remainingTime = 0f;
+                Global.isGameStarted = false;
+                Global.isPlayable = false;
+                UIManager.Instance.GameOverPanelSet(true);
+                Ball.Instance.ResetVelocityX();
+            }
+        }        
     }
 
     public void AddTime()
@@ -47,5 +56,10 @@ public class TimeController : MonoBehaviour
         timeBarFill.fillAmount = remainingTime / timeToEnd;
     }
 
+    public void ResetTime()
+    {
+        remainingTime = timeToEnd;
+        timeBarFill.fillAmount = remainingTime / timeToEnd;
+    }
 
 }

@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
         Instance = this;
     }
     #endregion
+    public Transform ballStartPos;
+    private GameObject ball;
     public GameObject hoops;    
     private GameObject hoopL, hoopR;
     private Hoop hoopLscript, hoopRscript;
@@ -19,6 +21,9 @@ public class LevelManager : MonoBehaviour
     
     void Start()
     {
+        //GET BALL GAMEOBJECT
+        ball = GameObject.FindGameObjectWithTag("Player");
+
         //GET HOOPS
         hoopL = hoops.transform.GetChild(0).gameObject;
         hoopR = hoops.transform.GetChild(1).gameObject;
@@ -69,5 +74,16 @@ public class LevelManager : MonoBehaviour
     public static void ResetStreak()
     {
         Global.streakCount = 0;
+    }
+
+    public void RestartGame()
+    {
+        Global.isGameStarted = false;
+        UIManager.Instance.ClearPoints();
+        TimeController.Instance.ResetTime();
+        //ball.transform.position = ballStartPos.transform.position;
+        Ball.Instance.transform.position = ballStartPos.transform.position;
+        Ball.Instance.ResetVelocityX();
+        Global.isPlayable = true;
     }
 }

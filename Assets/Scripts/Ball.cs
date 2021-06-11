@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour
     void Update()
     {
         //CHECKS THE INPUT
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Global.isPlayable)
         {
             if (!Global.isGameStarted)
                 Global.isGameStarted = true;                                   
