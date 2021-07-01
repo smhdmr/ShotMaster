@@ -98,4 +98,14 @@ public class LevelManager : MonoBehaviour
         hoopL.SetActive(true);
         Global.isPlayable = true;
     }
+
+    public void OnPlayerFail()
+    {
+        Global.isGameStarted = false;
+        Global.isPlayable = false;
+        UIManager.Instance.GameOverPanelSet(true);
+        Ball.Instance.ResetVelocityX();
+
+        AdManager.Instance.AdCounter();
+    }
 }

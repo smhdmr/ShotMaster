@@ -8,12 +8,7 @@ public class Ground : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (Global.isGameStarted)
-        {
-            Global.isGameStarted = false;
-            Global.isPlayable = false;
-            UIManager.Instance.GameOverPanelSet(true);
-            Ball.Instance.ResetVelocityX();
-        }
+            LevelManager.Instance.OnPlayerFail();      
 
     }   
 
